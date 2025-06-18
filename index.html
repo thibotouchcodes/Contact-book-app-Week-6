@@ -12,6 +12,7 @@
         <script src="config.js"></script>
         <script>
             document.getElementById("refresh").addEventListener('click', fetchContacts);
+            document.getElementById("addcontact").addEventListener('click', addcontact);
             
             function fetchContacts(){
                 fetch(rootPath + "controller/get-contacts/")
@@ -38,6 +39,9 @@
                 }
                 output += "</table>";
                 document.getElementById("table").innerHTML = output;
+            }
+            function addcontact(){
+                window.open("add-contact.html", "_self")
             }
         </script>
     </body>
