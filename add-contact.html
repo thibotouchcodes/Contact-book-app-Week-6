@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>   
+    </head>
+    <body>
+        <br/>
+        <form id="editform">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname"><br/>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname"><br/>
+            <label for="mobile">Mobile number</label>
+            <input type="text" name="mobilenumber" id="mobilenumber"><br/>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email"><br/>
+            <label for="avatar">Select Image</label>
+            <input type="file" name="avatar" id="avatar"><br/>
+            <button type="submit" id="submitform">Submit</button>
+        </form>
+        <br/>
+        <script src="config.js"></script>
+        <script>
+           function submitform(e){
+            e.preventDefault();
+
+            const form = new FormData(document.querySelector('#editform'));
+            form.append('apiKey', apiKey);
+
+            fetch(rootPath + 'controller/insert-contact', {
+                method: 'POST',
+                header: {'Accept': 'application/json, *.*'},
+                body: form
+            })
+            .then(function(respons){
+                return respons.text();
+            })
+            .then(function(data){
+                if(data == '1'){
+                    alert("Contact Added");
+                    //link to homepage
+                }else{
+                    alert(data);
+                    //link to homepage
+                }
+            })
+           }
+        </script>
+    </body>
+</html>
