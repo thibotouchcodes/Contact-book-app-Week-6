@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>   
+    </head>
+    <body>
+        <div id="avatarimage"></div>
+        <form id="editform">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname" readonly><br/>
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname" readonly><br/>
+            <label for="mobile">Mobile number</label>
+            <input type="text" name="mobilenumber" id="mobilenumber" readonly><br/>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" readonly><br/>
+            <label for="avatar" id="avatarlabel" hidden>Change profile image</label>
+            <input type="file" name="avatar" id="avatar" hidden><br/>
+            <button type="submit" id="submitform">Submit</button>
+        </form>
+        <br/><br/>
+        <button id="homelink" type="button">Home</button>
+        <button id="editcontact" type="button">Edit Contact</button>
+        <button id="deletecontact" type="button">Delete Contact</button>
+
+        <script src="config.js"></script>
+        <script>
+            document.getElementById("homelink").addEventListener('click', homelink);
+
+           var id = getid();
+            console.log("The id is: " + id);
+
+            function getid(){
+                var url = window.location.href;
+                var pos = url.search("=");
+                var id = url.slice(pos + 1);
+                return id;
+            }
+
+            function homelink(){
+                window.open("index.html", "_self");
+            }
+        </script>
+    </body>
+</html>
