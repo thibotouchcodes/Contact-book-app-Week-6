@@ -3,7 +3,7 @@
         <meta charset="UTF-8">
         <title></title>   
     </head>
-    <body>
+    <body onload="getcontact()">
         <div id="avatarimage"></div>
         <form id="editform">
             <label for="firstname">First Name</label>
@@ -39,6 +39,28 @@
 
             function homelink(){
                 window.open("index.html", "_self");
+            }
+
+            function getcontact(){
+                fetch(rootPath + 'controller/get-contacts/?id=' + id)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    displayOutput(data);
+                    console.log(data);
+                })
+
+                function displayOutput(data){
+                    avatarimg = `
+                        <img src="${rootPath}/controller/uploads/${data[0].avatar}" width="200" />
+`
+                    document.getElementById("avatarimage").innerHTML = avatarimg;
+                    document.getElementById("firstname").value = data[0].firstname;
+                    document.getElementById("lastname").value = data[0].lastname;
+                    document.getElementById("mobilenumber").value = data[0].mobile;
+                    document.getElementById("email").value = data[0].email;   
+                }
             }
         </script>
     </body>
