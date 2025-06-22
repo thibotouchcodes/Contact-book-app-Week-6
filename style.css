@@ -20,12 +20,55 @@ form#editform input {
 
 body{
     background-color: azure;
+    margin: 0;
+  padding: 1rem;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td, th {
+  padding: 0.5rem;
+  text-align: left;
+  word-break: break-word;
+}
+
+img {
+  width:60px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  table, tr, td, th {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+
+  td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  td img {
+    width: 50px;
+  }
 }
 
 table tr:hover{
     color: black;
     text-decoration: none;
     background-color: rgb(139, 177, 211);
+    cursor: pointer;
 }
 
 table a {

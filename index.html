@@ -51,7 +51,7 @@
 
                     grouped[letter].forEach(contact => {
                         output += `
-                        <tr >
+                        <tr onclick="editcontact(${contact.id})">
                           <td><a href="edit-contact.html?id=${contact.id}"><img src="${rootPath}controller/uploads/${contact.avatar}" width="40"/></a></td>
                           <td><a href="edit-contact.html?id=${contact.id}">${contact.firstname || ''}</a></td> 
                            <td><a href="edit-contact.html?id=${contact.id}">${contact.lastname || ''}</a></td>  
