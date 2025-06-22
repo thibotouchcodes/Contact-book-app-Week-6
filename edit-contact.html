@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
         <title></title>   
     </head>
@@ -11,7 +12,7 @@
             <label for="lastname">Last Name</label>
             <input type="text" name="lastname" id="lastname" readonly><br/>
             <label for="mobile">Mobile number</label>
-            <input type="text" name="mobilenumber" id="mobilenumber" readonly><br/>
+            <input type="text" name="mobile" id="mobile" readonly><br/>
             <label for="email">Email</label>
             <input type="text" name="email" id="email" readonly><br/>
             <label for="avatar" id="avatarlabel" hidden>Change profile image</label>
@@ -60,7 +61,7 @@
                     document.getElementById("avatarimage").innerHTML = avatarimg;
                     document.getElementById("firstname").value = data[0].firstname;
                     document.getElementById("lastname").value = data[0].lastname;
-                    document.getElementById("mobilenumber").value = data[0].mobile;
+                    document.getElementById("mobile").value = data[0].mobile;
                     document.getElementById("email").value = data[0].email;   
                 }
             }
@@ -68,7 +69,7 @@
             function editcontact(){
                     document.getElementById("firstname").readOnly = false;
                     document.getElementById("lastname").readOnly = false;
-                    document.getElementById("mobilenumber").readOnly = false;
+                    document.getElementById("mobile").readOnly = false;
                     document.getElementById("email").readOnly = false;
                     document.getElementById("avatar").hidden = false;
                     document.getElementById("submitform").hidden = false;

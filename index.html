@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="stylesheet" href="style.css">
         <meta charset="UTF-8">
         <title></title>   
     </head>
@@ -21,25 +22,47 @@
                 })
                 .then(function(data){
                     displayOutput(data);
-                    //console.log(data);
+                    //console.log("Fetched contacts: ", data);
                 })
+                .catch(error => {
+                    console.error("Error fetching contacts: ", error);
+                    document.getElementById("table").innerhtml = "Failed to load contacts.";
+                });
             }
             function displayOutput(data){
-                output = "<table>";
+                let output = "";
 
-                for (a in data){
-                    output += `
-                        <tr onclick="editcontact(${data[a].id})">
-                          <td><img src="${rootPath}controller/uploads/${data[a].avatar}" width="40"/></td>
-                          <td><h5>${data[a].firstname}</h5></td> 
-                           <td><h5>${data[a].lastname}</h5></td>  
-                        </tr>
-                        
-                    `
+                data.sort((a, b) => (a.firstname || "").localeCompare(b.firstname || ""));
+
+                const grouped = {};
+                data.forEach(contact => {
+                    const name = contact.firstname || "Unknown";
+                    const letter = name[0].toUpperCase();
+                    if (!grouped[letter]) {
+                        grouped[letter] = [];
+                    }
+                    grouped[letter].push(contact);
+                })
+
+                const sortedLetters = Object.keys(grouped).sort();
+                sortedLetters.forEach(letter => {
+                    output += `<h3>${letter}</h3>`;
+                    output += `<table>`;
+
+                    grouped[letter].forEach(contact => {
+                        output += `
+                        <tr >
+                          <td><a href="edit-contact.html?id=${contact.id}"><img src="${rootPath}controller/uploads/${contact.avatar}" width="40"/></a></td>
+                          <td><a href="edit-contact.html?id=${contact.id}">${contact.firstname || ''}</a></td> 
+                           <td><a href="edit-contact.html?id=${contact.id}">${contact.lastname || ''}</a></td>  
+                        </tr>   
+                    `;
+                    });
+                    output += "</table>";
+                });
+                document.getElementById("table").innerHTML = output;    
                 }
-                output += "</table>";
-                document.getElementById("table").innerHTML = output;
-            }
+
             function addcontact(){
                 window.open("add-contact.html", "_self")
             }
